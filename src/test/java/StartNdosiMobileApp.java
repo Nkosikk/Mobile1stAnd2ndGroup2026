@@ -14,12 +14,7 @@ public class StartNdosiMobileApp {
     public static AndroidDriver driver;
 
     @Before
-    public void setup(){
-
-    }
-
-    @Test
-    public void lauchNdosiQAApp() throws MalformedURLException {
+    public void setup() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("automationName", "UiAutomator2");
@@ -28,10 +23,15 @@ public class StartNdosiMobileApp {
         driver= new AndroidDriver(new URL("http://172.20.10.7:4723/"), capabilities);
     }
 
+    @Test
+    public void lauchNdosiQAApp() throws MalformedURLException {
+        driver.findElement(By.id("com.ndosi.mobile:id/btnClose")).click();
+    }
+
     @After
     public void quitApp(){
         System.out.println("App successfully started");
-        driver.findElement(By.id("com.ndosi.mobile:id/btnClose")).click();
+
     }
 
 
