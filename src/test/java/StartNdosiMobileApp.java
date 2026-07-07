@@ -33,6 +33,7 @@ public class StartNdosiMobileApp {
     public void quitApp(){
         if (driver != null) {
             driver.quit();
+
         }
     }
 
