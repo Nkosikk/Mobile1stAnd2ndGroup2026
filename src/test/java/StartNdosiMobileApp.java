@@ -20,7 +20,7 @@ public class StartNdosiMobileApp {
                 .setAutomationName("UiAutomator2")
                 .setApp(System.getProperty("user.dir") + "/src/main/Apps/app-qa-release.apk");
 
-        driver = new AndroidDriver(URI.create("http://10.0.0.168:4723/").toURL(), options);
+        driver = new AndroidDriver(URI.create("http://127.0.0.1:4723/").toURL(), options);
     }
 
     @Test
