@@ -1,9 +1,12 @@
 // Declares the package for the base test class
 package Base;
 
+import Pages.DashboardPage;
 import Pages.LoginPage;
 import Utilities.DriverFactory;
 import io.appium.java_client.AppiumDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
 import java.io.FileInputStream;
@@ -18,6 +21,7 @@ public class BaseTest {
     // Declares a protected Properties variable to store configuration settings accessible by subclasses
     protected Properties config;
     protected LoginPage loginPage;
+    protected DashboardPage dashboardPage;
 
     // Method that sets up the driver and loads configuration before running tests
     @BeforeClass
@@ -37,6 +41,8 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver, config);
         LoginToNdosiAutomation();
+
+        dashboardPage = new DashboardPage(driver,config);
     }
 
     public void LoginToNdosiAutomation() {
@@ -45,6 +51,11 @@ public class BaseTest {
         loginPage.enterEmail(config.getProperty("email"));
         loginPage.enterPassword(config.getProperty("password"));
         loginPage.clickLoginButton();
+    }
+
+    @AfterClass
+    public void tearDown(){
+        DriverFactory.quitDriver();
     }
 
 

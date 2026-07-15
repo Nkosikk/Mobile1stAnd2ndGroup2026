@@ -6,8 +6,8 @@ import org.testng.annotations.Test;
 public class DashboardTest extends BaseTest {
 
     @Test
-    public void myTest()
+    public void viewMyCoursesTest()
     {
-        //
+        dashboardPage.clickViewAllButton();
     }
 }
