@@ -66,6 +66,9 @@ public class DriverFactory {
             String appPath = System.getProperty("user.dir") + "/" + config.getProperty("appPath");
             // Sets the app path for native app automation in the options
             options.setApp(appPath);
+
+            System.out.println("This is my APP PATH: "+ appPath);
+
             // Prints message indicating Android native app launch
             System.out.println("Launching Android native app...");
         // Throws exception if execution type is not supported for Android
