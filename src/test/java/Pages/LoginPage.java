@@ -51,6 +51,8 @@ public class LoginPage {
     private By loginButtonNativeLocator = By.xpath("//android.widget.Button[@content-desc='Login']");
     private By loginButtonWebLocator = By.id("login-submit");
 
+    private By loginAssertionElementNative = By.xpath("//android.view.View[contains(@content-desc,'an overview of your learning journey')]");
+    private By loginAssertionElementWeb = By.xpath("//p[contains(text(),'an overview of your learning journey')]");
 
     private WebElement getElement(By nativeLocator, By webLocator) {
         String execType = config.getProperty("executionType");
@@ -59,6 +61,18 @@ public class LoginPage {
             return wait.until(ExpectedConditions.elementToBeClickable(nativeLocator));
         } else if (execType.equalsIgnoreCase("mobileWeb")) {
             return wait.until(ExpectedConditions.elementToBeClickable(webLocator));
+        } else {
+            throw new RuntimeException("Unsupported executionType: " + execType);
+        }
+
+    }
+    private WebElement getVisibleElement(By nativeLocator, By webLocator) {
+        String execType = config.getProperty("executionType");
+
+        if (execType.equalsIgnoreCase("nativeApp")) {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(nativeLocator));
+        } else if (execType.equalsIgnoreCase("mobileWeb")) {
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(webLocator));
         } else {
             throw new RuntimeException("Unsupported executionType: " + execType);
         }
@@ -87,5 +101,11 @@ public class LoginPage {
     public void clickLoginButton() {
         getElement(loginButtonNativeLocator, loginButtonWebLocator).click();
     }
-//Add an assertion here
+
+    public boolean isLoginSuccess()
+    {
+        return getVisibleElement(loginAssertionElementNative,
+                loginAssertionElementWeb).isDisplayed();
+    }
+
 }

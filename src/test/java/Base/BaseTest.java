@@ -5,6 +5,7 @@ import Pages.DashboardPage;
 import Pages.LoginPage;
 import Utilities.DriverFactory;
 import io.appium.java_client.AppiumDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -51,6 +52,9 @@ public class BaseTest {
         loginPage.enterEmail(config.getProperty("email"));
         loginPage.enterPassword(config.getProperty("password"));
         loginPage.clickLoginButton();
+
+        Assert.assertTrue(loginPage.isLoginSuccess(),"Login was unsuccessfully"
+                );
     }
 
     @AfterClass
