@@ -51,8 +51,4 @@ public class ProfilePage {
     {
         GetLocators(MenuButtonNativeLocator,MenuButtonWebLocator).click();
     }
-
-
-
-
 }
